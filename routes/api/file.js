@@ -120,6 +120,8 @@ router.post(
 
 // 文件下载
 router.get("/download/:filename", async (req, res, next) => {
+  // 缓存5s
+  res.setHeader("Cache-Control", `max-age=5`);
   const filepath = path.resolve(fileRoot, req.params.filename);
   res.download(filepath, req.params.filename);
 

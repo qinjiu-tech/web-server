@@ -12,7 +12,16 @@ app.use(require("./corsMidderware"));
 // 静态资源中间件
 // 静态资源目录
 const staticRoot = path.resolve(__dirname, "../public");
-app.use(express.static(staticRoot));
+app.use(
+  express.static(staticRoot, {
+    // 客户端缓存
+    setHeaders(res, path) {
+      if (!path.endsWith(".html")) {
+        res.header("Cache-Control", `max-age=${3600 * 24 * 365 * 100}`);
+      }
+    },
+  })
+);
 
 // 解析请求的中间件
 // cookie：在req对象中注入cookies属性
