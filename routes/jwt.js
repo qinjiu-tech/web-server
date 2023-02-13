@@ -3,7 +3,7 @@ const { getToken } = require("../utils");
 const { PRIVATE_KEY, COOKIE_KEY } = require("../utils/consts");
 
 exports.publish = function publish(user, res) {
-  const maxAge = 1 * 60 * 60; // 单位：s
+  const maxAge = 24 * 60 * 60; // 单位：s
   // 签名
   const token = jwt.sign(
     {

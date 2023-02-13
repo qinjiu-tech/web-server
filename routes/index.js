@@ -26,8 +26,16 @@ app.use(express.urlencoded({ extended: true }));
 // // text/plain ---> raw: text
 // app.use(express.text())
 
+app.use(require("./printMid"));
+
+// api日志中间件
+app.use(require("./apiLoggerMid"));
+
 // 权限中间件
 app.use(require("./tokenMiddleware"));
+
+// 使用代理
+app.use(...require("./proxyMidderware"));
 
 // 基础路由
 app.use("/api/admin", require("./api/admin"));

@@ -70,17 +70,6 @@ async function validateToken(token) {
 }
 
 module.exports = async function (req, res, next) {
-  console.log(
-    req.path,
-    req.method,
-    "params:",
-    req.params,
-    "query:",
-    req.query,
-    "body:",
-    req.body
-  );
-
   // 无需token
   if (!isNeedToken(req)) {
     next();
